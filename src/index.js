@@ -30,25 +30,24 @@ function onSearchBoxInput(e) {
     return;
   }
   fetchCountries(value)
-    .then(data => {
-      if (data.length > 10) {
-        showInfo();
-        return;
-      } else if (data.length > 1) {
-        clearCountryInfo();
-        addItemsInCountryList(data);
-      } else {
-        console.log(data);
-        clearCountryList();
-        addTagsInCountryInfo(data[0]);
-      }
-    })
-    .catch(() => {
-      showError();
-    })
+    .then(checkingArray)
+    .catch(showError)
     .finally(() => {
       value = '';
     });
+}
+
+function checkingArray(data) {
+  if (data.length > 10) {
+    showInfo();
+    return;
+  } else if (data.length > 1) {
+    clearCountryInfo();
+    addItemsInCountryList(data);
+  } else {
+    clearCountryList();
+    addTagsInCountryInfo(data[0]);
+  }
 }
 
 function renderCountresList(arr) {
