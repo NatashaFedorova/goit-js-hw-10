@@ -38,15 +38,14 @@ function onSearchBoxInput(e) {
 }
 
 function checkingArray(data) {
-  if (data.length > 10) {
-    showInfo();
-    return;
-  } else if (data.length > 1) {
+  if (data.length === 1) {
+    clearCountryList();
+    addTagsInCountryInfo(data[0]);
+  } else if (data.length >= 2 && data.length <= 10) {
     clearCountryInfo();
     addItemsInCountryList(data);
   } else {
-    clearCountryList();
-    addTagsInCountryInfo(data[0]);
+    showInfo();
   }
 }
 
